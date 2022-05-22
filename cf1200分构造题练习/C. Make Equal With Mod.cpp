@@ -10,37 +10,35 @@
 #include<stack>
 #define X first
 #define Y second
-#define INF 0x3f3f3f3f3f
+#define INF 0x3f3f3f3f
 #define ll long long
 #define fre() freopen("in.txt", "r", stdin);
 #define endl "\n"
+#define fro(x) for(int i=1;i<=x;i++)
 #define  IOS std::ios::sync_with_stdio(false);std::cin.tie(0);
 using namespace std;
 const double eps=1e-6;
 const int N=2e5+10;
 const int mod=1e9+7;
+int a[N];
 int main() {
-//	fre();
+//  freopen("in.txt", "r", stdin);
 	int t;
 	cin>>t;
 	while(t--){
 		int n;
 		cin>>n;
-		int  a[n+1],b[n+1];
-		for(int i=1;i<=n;i++)cin>>a[i];
-		for(int i=1;i<=n;i++)cin>>b[i];
-		int la=INF,ra=INF,lb=INF,rb=INF;
-		for(int i=1;i<=n;i++){
-			la=min(la,abs(a[1]-b[i]));
-			ra=min(ra,abs(a[n]-b[i]));
-			lb=min(lb,abs(a[i]-b[1]));
-			rb=min(rb,abs(a[i]-b[n]));
+		bool f1=0,f0=0;
+		fro(n){
+			cin>>a[i];
+			if(a[i]==1)f0=1;
 		}
-//		cout<<INF<<endl; 
-		//只要四个角都有连接，则网络有容错 
-		cout<<min(
-		min(la+lb,abs(a[1]-b[1]))+min(ra+rb,abs(a[n]-b[n])),
-		min(la+rb,abs(a[1]-b[n]))+min(ra+lb,abs(a[n]-b[1])))<<endl;
+		sort(a+1,a+n+1);
+		fro(n-1){
+			if(a[i+1]-a[i]==1)f1=1;
+		}	
+		if(f1 && f0)puts("NO");
+		else puts("YES");
 	}
 
 	return 0;
